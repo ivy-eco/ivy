@@ -1,13 +1,17 @@
 {
   "name": "@ivy-eco/sdk",
   "version": "0.1.0",
-  "description": "SDK oficial para Ivy",
-  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "description": "SDK oficial para Ivy",
+  "license": "MIT",
+  "author": "AFelipeCR",
   "scripts": {
     "build": "tsc"
   },
+  "keywords": [
+    "Ivy", "WhatsApp"
+  ],
   "files": [
     "dist"
   ],
