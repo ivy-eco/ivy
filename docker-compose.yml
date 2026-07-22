@@ -1,0 +1,27 @@
+services:
+  ivy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ivy
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    networks:
+      - openwa-network
+    ports:
+      - '127.0.0.1:${API_PORT:-3000}:3000'
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5' 
+          memory: 4G
+        reservations:
+          memory: 1G
+
+networks:
+  openwa-network:
+    external: true
+    name: openwa-network
