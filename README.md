@@ -5,4 +5,4 @@ The central Webhook Manager and API gateway for the Ivy ecosystem, built with Ne
 ## Installation
 
 ```bash
-npm install @ivy-eco/ivy
+git clone https://github.com/AFelipeCR/ivy.git
