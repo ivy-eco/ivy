@@ -2,7 +2,7 @@ import { useEffect, useState, type SubmitEvent } from "react";
 import { api, type HTTPError } from "../../services/api";
 import { Link } from "react-router-dom";
 import { formToObject } from "../sessions/SessionRegister";
-import { RegisterActionSchema, type ActionModel, type RegisterActionBody } from "../../models/action.model"
+import { RegisterActionSchema, type ActionModel, type GroupModel, type RegisterActionBody } from "../../models/action.model"
 
 interface ActionListParams { 
     sessionId: string;
@@ -27,7 +27,9 @@ export default function ActionsListPanel ({sessionId, sessionName}: ActionListPa
         let actionsRes = as as ActionModel[]
 
         actionsRes = actionsRes.map(a => {
-            a.groups = a.groups.map(ag => ag.group)
+            const gs = a.groups as any[];
+            const gm:GroupModel[] = gs.map(ag => ag.group)
+            a.groups = gm
             return a;
         })
 
@@ -63,7 +65,7 @@ export default function ActionsListPanel ({sessionId, sessionName}: ActionListPa
                     <div>
                         <div className="has-text-info">{a.extension.name}</div>
                         <div className="has-text-success">{a.command}</div>
-                        <div>{a.groups.map(g => g.name).join(", ")}</div>
+                        <div>{(a.groups as GroupModel[]).map(g => g.name).join(", ")}</div>
                     </div>
                     <div className="is-flex is-right">
                         <Link className="button is-info" relative="path" to={`../action/${a.id}`}>Manage</Link>

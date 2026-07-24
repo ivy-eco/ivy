@@ -17,11 +17,17 @@ export const SUBSCRIBABLE_EVENTS = [
 
 export type SubscribableEvent = (typeof SUBSCRIBABLE_EVENTS)[number];
 
+export interface GroupModel { 
+  id: string;
+  name: string;
+}
+
+
 export interface ActionModel {
   id: number;
   command: string;
   events: SubscribableEvent [];
-  groups: { id: number, group: { id: string, name: string } }[] | { id: string, name: string } []
+  groups: { id: number, group: GroupModel }[] | GroupModel []
   extension: ExtensionModel;
   values: string[]
 }
