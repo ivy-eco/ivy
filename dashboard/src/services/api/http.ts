@@ -4,24 +4,37 @@ export type HTTPError = {
     statusCode: number,
 }
 
-const request = async <T>(endpoint:string, method: "GET" | "POST", body?:any) =>{
-    const res = await fetch(endpoint, {
-        method,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: body ? JSON.stringify(body) : null
-    });
+class HttpClient {
+    private _prefix: string;
 
-    const data = await res.json();
+    constructor(prefix:string = "") {
+        this._prefix = prefix;
+    }
 
-    if(data.error)
-        return data as HTTPError;
+    async request <T>(endpoint:string, method: "GET" | "POST", body?:any) {
+        const res = await fetch(this._prefix + endpoint, {
+            method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: body ? JSON.stringify(body) : null
+        });
 
-    return data as T;
+        const data = await res.json();
+
+        if(data.error)
+            return data as HTTPError;
+
+        return data as T;
+    }
+
+    get <T>(endpoint:string) {
+        return this.request<T>(endpoint, "GET");
+    };
+    
+    post <T>(endpoint:string, data:any) {
+        return this.request<T>(endpoint, "POST", data)
+    };
 }
 
-export const http = {
-    get: <T>(endpoint:string) => request<T>(endpoint, "GET"),
-    post: <T>(endpoint:string, data:any) => request<T>(endpoint, "POST", data),
-};
+export const http = new HttpClient(`/${__APP_PREFIX__}`);

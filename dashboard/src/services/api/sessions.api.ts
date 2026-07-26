@@ -3,19 +3,19 @@ import { http } from "./http";
 
 export const sessionsWAApi = {
     getById: (id:string) => {
-        return http.get<any>(`/api/sessions/WA/${id}`);
+        return http.get<any>(`/sessions/WA/${id}`);
     }
 };
 
 export const sessionsApi = {
     WA: sessionsWAApi,
     getRegistered: () => {
-        return http.get<ResSession>("/api/sessions/registered")
+        return http.get<ResSession>("/sessions/registered")
     },
     register: (session: RegisterSessionBody) => {
-        return http.post<any>(`/api/sessions`, session);
+        return http.post<any>(`/sessions`, session);
     },
     getById: (id:string) => {
-        return http.get<any>(`/api/sessions/${id}`);
+        return http.get<any>(`/sessions/${id}`);
     },
 };

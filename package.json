@@ -1,12 +1,14 @@
 {
   "name": "ivy-eco",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Webhook Manager",
   "author": "afcr.dev",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "nest build",
+    "build:dashboard": "cd dashboard && npm run build",
+    "build:nest": "nest build",
+    "build": "npm run build:dashboard && npm run build:nest",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
