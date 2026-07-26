@@ -1,4 +1,5 @@
 import { join } from 'path';
+import * as fs from 'fs';
 import { readdirSync, statSync } from 'fs';
 import { ExtensionDefinition } from './modules/extension/extension.interface';
 import { pathToFileURL } from 'url';
@@ -6,6 +7,11 @@ import { Logger, Type } from '@nestjs/common';
 
 export async function loadExtensionsDynamically(): Promise<ExtensionDefinition[]> {
   const extensionsBaseDir = join(process.cwd(), 'extensions');
+
+  if (!fs.existsSync(extensionsBaseDir)) {
+    fs.mkdirSync(extensionsBaseDir, { recursive: true });
+  }
+
   const extensionsList: ExtensionDefinition[] = [];
 
   const folders = readdirSync(extensionsBaseDir).filter(file =>
