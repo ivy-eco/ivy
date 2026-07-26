@@ -1,8 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { loadExtensionsDynamically } from './extensions.snanner';
+import { extensionsList } from './extensions.list';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const extensions = await loadExtensionsDynamically();
+
+  const app = await NestFactory.create(AppModule.register(extensionsList.concat(extensions)));
 
   const port = process.env.PORT ?? 3000;
   const prefix = process.env.PREFIX ?? "api";
@@ -15,4 +19,5 @@ async function bootstrap() {
   });
 
 }
+
 bootstrap();
