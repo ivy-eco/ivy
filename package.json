@@ -6,9 +6,10 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "build:sdk": "npm run build --workspace=@ivy-eco/sdk",
     "build:dashboard": "cd dashboard && npm run build",
     "build:nest": "nest build",
-    "build": "npm run build:dashboard && npm run build:nest",
+    "build": "npm run build:sdk && npm run build:dashboard && npm run build:nest",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",

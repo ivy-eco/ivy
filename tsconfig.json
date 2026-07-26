@@ -16,6 +16,7 @@
     "baseUrl": "./",
     "paths": {
       "@ivy-eco/core/*": ["src/*"],
+      "@ivy-eco/sdk": ["sdk/javascript/src/index"],
       "@ivy-eco/sdk/*": ["sdk/javascript/src/*"],
     },
     "incremental": true,

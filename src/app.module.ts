@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
@@ -24,6 +24,7 @@ import { Group } from './modules/group/entities/group.entity';
 
 import { extensionsList } from './extensions.list';
 import { ActionGroup } from './modules/action/entities/action-group.entity';
+import { ExtensionDefinition } from './modules/extension/extension.interface';
 
 
 @Module({
@@ -60,10 +61,18 @@ import { ActionGroup } from './modules/action/entities/action-group.entity';
     SessionModule,
     ActionModule,
     GroupModule,
-    ExtensionsModule.forRoot(extensionsList),
     ServeStaticModule.forRoot({
       rootPath: path.join(__dirname, '..', '..', 'dashboard', 'dist'),
     })
   ],
 })
-export class AppModule { }
+export class AppModule {
+  static register(extensions: ExtensionDefinition[]): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        ExtensionsModule.forRoot(extensions),
+      ],
+    };
+  }
+}
