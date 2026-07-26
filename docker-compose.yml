@@ -11,6 +11,7 @@ services:
       - .env
     volumes:
       - ./data:/app/data
+      - ./extensions:/app/extensions
     networks:
       - openwa-network
     ports:
