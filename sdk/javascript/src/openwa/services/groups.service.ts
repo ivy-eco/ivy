@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { BaseHttpService } from './base-http.service';
-import { EditMessageDto, ReplyMessageDto, SendMessageDto } from "./dto/message.dto";
 import { OpenWAError } from './dto/session.dto';
 
 @Injectable()
