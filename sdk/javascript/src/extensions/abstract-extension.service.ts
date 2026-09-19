@@ -9,7 +9,7 @@ import { Action, ActionFunction, Extension } from '../common/models';
 @Injectable()
 export abstract class AExtensionService {
     @Inject(DataSource) 
-    protected readonly dataSource: DataSource;
+    protected readonly dataSource!: DataSource;
 
     async buildContext(body: ReceivedMessageEvent): Promise<ExtensionContext | undefined> {
         const { data } = body;

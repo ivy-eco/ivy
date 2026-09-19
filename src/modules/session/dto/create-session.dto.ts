@@ -1,6 +1,6 @@
 export class CreateSessionDto {
-  id: string;
-  name: string;
-  description: string;
-  phone: string;
+  id!: string;
+  name!: string;
+  description!: string;
+  phone!: string;
 }

@@ -58,7 +58,7 @@ export class SessionService {
           }
         }
       }
-    } catch (e) {
+    } catch (e: any) {
       console.log(e)
       return {
         success: false,

@@ -6,7 +6,7 @@ export interface SendMessageDto{
 export interface EditMessageDto{
     chatId:string;
     messageId:string;
-    text: string
+    body: string
 }
 
 export interface ReplyMessageDto{
