@@ -4,12 +4,12 @@ import { ActionGroup } from "../../action/entities/action-group.entity";
 @Entity({ name: "groups" })
 export class Group {
     @PrimaryColumn({ name: "group_id", type: "text" })
-    id: string
+    id!: string
 
     @Column({ type: "text"})
-    name: string;
+    name!: string;
 
     @OneToMany(() => ActionGroup, (actGroup) => actGroup.group)
     @JoinColumn({ name: "action_id" })
-    actions: ActionGroup[];
+    actions!: ActionGroup[];
 }

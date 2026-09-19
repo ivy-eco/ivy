@@ -11,7 +11,7 @@ export class MessagesService {
     }
 
     editMessage(sessionId: string, dto:EditMessageDto){
-        return this.http.ref.put<{messageId:string}>(`/sessions/${sessionId}/messages/edit-text`, dto);
+        return this.http.ref.post<{messageId:string}>(`/sessions/${sessionId}/messages/edit`, dto);
     }
     
     reply(sessionId: string, dto: ReplyMessageDto) {

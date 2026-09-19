@@ -1,28 +1,28 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany, JoinTable, Index } from "typeorm";
 import { ExtFunction } from "./ext-function.entity";
-import { Action } from "src/modules/action/entities/action.entity";
+import { Action } from "@ivy-eco/core/modules/action/entities/action.entity";
 import { InputsField } from "@ivy-eco/sdk/common/interfaces/fields.interface";
 
 @Entity({ name: "extensions" })
 export class Extension {
     @PrimaryGeneratedColumn({ name: "extension_id"})
-    id: number;
+    id!: number;
 
     @Column({ type: "text"})
-    name: string;
+    name!: string;
 
     @Column({ type: "text"})
-    endpoint: string;
+    endpoint!: string;
     
     @Column("simple-json", { name: "events" })
-    events: string[];
+    events!: string[];
 
     @Column("simple-json", { nullable: true })
-    inputs: InputsField[];
+    inputs!: InputsField[];
 
     @OneToMany(() => ExtFunction, (extFun) => extFun.extension)
-    functions: ExtFunction[]
+    functions!: ExtFunction[]
 
     @OneToMany(() => Action, (action) => action.extension)
-    actions: Action[]
+    actions!: Action[]
 }

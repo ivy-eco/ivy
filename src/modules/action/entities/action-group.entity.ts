@@ -5,13 +5,13 @@ import { Group } from "../../group/entities/group.entity";
 @Entity({ name: "action_groups" })
 export class ActionGroup {
     @PrimaryGeneratedColumn({ name: "actiongroup_id"})
-    id: number;
+    id!: number;
 
     @ManyToOne(() => Action, (action) => action.groups)
     @JoinColumn({ name: "action_id" })
-    action: Action;
+    action!: Action;
 
     @ManyToOne(() => Group, (group) => group.actions)
     @JoinColumn({ name: "group_id" })
-    group: Group;
+    group!: Group;
 }
